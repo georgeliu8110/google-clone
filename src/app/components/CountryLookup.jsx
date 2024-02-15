@@ -14,7 +14,6 @@ export default function CountryLookup() {
       setCountry(`${data.city}, ${data.region}, ${data.country}`)
     }
     getcountry()
-    console.log(country)
   }, [])
 
   return (
