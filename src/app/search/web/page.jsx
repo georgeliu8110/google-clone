@@ -1,13 +1,10 @@
 import Link from 'next/link'
-import WebSearchResults from '../../components/webSearchResults'
+import WebSearchResults from '../../components/WebSearchResults'
 
 export default async function WebSearchPage({searchParams}) {
   const term = await searchParams.searchTerm
-
   const response = await fetch(`https://www.googleapis.com/customsearch/v1?key=${process.env.GOOGLE_API_KEY}&cx=${process.env.CX_KEY}&q=${term}`);
-
   const data = await response.json()
-  console.log('data',data)
   const results = await data.items
 
   if (!results) {
