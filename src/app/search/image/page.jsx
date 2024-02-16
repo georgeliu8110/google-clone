@@ -2,11 +2,12 @@ import Link from 'next/link'
 import ImageSearchResults from '../../components/ImageSearchResults'
 
 export default async function ImageSearchPage({searchParams}) {
+  const startIndex = searchParams.start || '1'
   const term = await searchParams.searchTerm
-  const response = await fetch(`https://www.googleapis.com/customsearch/v1?key=${process.env.GOOGLE_API_KEY}&cx=${process.env.CX_KEY}&q=${term}&searchType=image`);
+  const response = await fetch(`https://www.googleapis.com/customsearch/v1?key=${process.env.GOOGLE_API_KEY}&cx=${process.env.CX_KEY}&q=${term}&searchType=image&start=${startIndex}`);
   const data = await response.json()
   const results = await data.items
-console.log(data.items[0].image)
+
   if (!results) {
     return (
       <div className='justify-center flex flex-col items-center bg-white pt-10'>
